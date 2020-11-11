@@ -43,6 +43,15 @@ End Sub
 
 Public Sub LoopWSs()
 
+'Adjusts Excel settings for faster VBA processing. Author:https://www.reddit.com/user/ViperSRT3g/
+Application.ScreenUpdating = Not Toggle
+    Application.EnableEvents = Not Toggle
+    Application.DisplayAlerts = Not Toggle
+    Application.EnableAnimations = Not Toggle
+    Application.DisplayStatusBar = Not Toggle
+    Application.PrintCommunication = Not Toggle
+    Application.Calculation = IIf(Toggle, xlCalculationManual, xlCalculationAutomatic)
+    
 'Loop through each worksheet and call each procedure
 Dim i As Integer
 
@@ -57,7 +66,10 @@ For i = 1 To Worksheets.Count
     SummaryTable
 'Call formatting procedure
     FormatColumns
+    Range("M1").Select
 Next i
+
+cmdAnalyzer.Hide
 
 End Sub
 
